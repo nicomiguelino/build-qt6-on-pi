@@ -1,0 +1,4 @@
+set(CMAKE_CROSSCOMPILING FALSE)
+set(CMAKE_SYSTEM_NAME Linux)
+set(CMAKE_SYSTEM_PROCESSOR armv7)
+set(TARGET armv7-linux-eabi)

@@ -5,3 +5,8 @@ services:
       - $HOME/tmp-qt6/build:/build:Z
       - ./scripts/build_qt6.sh:/scripts/build_qt6.sh
       - ./toolchain:/src/toolchain
+      - ./examples:/src/examples
+    privileged: true
+  sandbox:
+    build: .
+    privileged: true

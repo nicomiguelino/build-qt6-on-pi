@@ -48,7 +48,43 @@ function build_hello() {
     sha256sum ${ARCHIVE_NAME} > ${ARCHIVE_NAME}.sha256
 }
 
-function build_qt() {
+function build_qt_submodules() {
+    local SUBMODULES=(
+        'qtshadertools'
+        'qtdeclarative'
+    )
+
+    mkdir -p "${PLATFORM_DIR}"
+
+    for SUBMODULE in ${SUBMODULES[@]}; do
+        local QT_SUBMODULE_DIR="${SUBMODULE}-everywhere-src-${QT_VERSION}"
+        local QT_SUBMODULE_ARCHIVE="${QT_SUBMODULE_DIR}.tar.xz"
+        local QT_DL_URL_PREFIX="${QT_BASE_URL}/${QT_MAJOR}.${QT_MINOR}/${QT_VERSION}"
+        local QT_SUBMODULE_DOWNLOAD_URL="${QT_DL_URL_PREFIX}/submodules/${QT_SUBMODULE_ARCHIVE}"
+        local QT_SUBMODULE_ARCHIVE_PATH="${DOWNLOAD_DIR}/${QT_SUBMODULE_ARCHIVE}"
+
+        if [ ! -f "${QT_SUBMODULE_ARCHIVE_PATH}" ]; then
+            wget "${QT_SUBMODULE_DOWNLOAD_URL}" -O \
+                "${QT_SUBMODULE_ARCHIVE_PATH}"
+        fi
+
+        if [ ! -d "${PLATFORM_DIR}/${QT_SUBMODULE_DIR}" ]; then
+            tar xf "${QT_SUBMODULE_ARCHIVE_PATH}" \
+                -C "${PLATFORM_DIR}"
+        fi
+
+        mkdir -p "${PLATFORM_DIR}/${SUBMODULE}-build" && \
+            cd "${PLATFORM_DIR}/${SUBMODULE}-build"
+
+        ${PLATFORM_DIR}/qt6/bin/qt-configure-module \
+            "${PLATFORM_DIR}/${QT_SUBMODULE_DIR}"
+
+        cmake --build . --parallel "${CORE_COUNT}"
+        cmake --install .
+    done
+}
+
+function build_qt_base() {
     local ARCHITECTURE=""
     if [ "$TARGET" == "pi4" ]; then
         ARCHITECTURE="armv8"
@@ -118,7 +154,8 @@ function main() {
     mkdir -p ${RELEASE_DIR}
 
     if (( BUILD_QT == 1 )); then
-        build_qt
+        build_qt_base
+        build_qt_submodules
 
         cd ${PLATFORM_DIR}
         tar -czf ${RELEASE_DIR}/qt-${QT_VERSION}-${TARGET}.tar.gz qt6

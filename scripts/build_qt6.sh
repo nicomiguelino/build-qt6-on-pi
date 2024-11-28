@@ -31,6 +31,8 @@ QT_BASE_URL="https://download.qt.io/official_releases/qt"
 EXAMPLES_DIR='/src/examples'
 RELEASE_DIR='/build/release'
 
+export LD_LIBRARY_PATH="${PLATFORM_DIR}/qt6/lib"
+
 function build_hello() {
     echo "Building the hello example..."
     local ARCHIVE_NAME="hello-${TARGET}.tar.gz"

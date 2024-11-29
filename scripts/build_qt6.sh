@@ -23,10 +23,10 @@ fi
 
 CORE_COUNT=$(nproc)
 QT_MAJOR="6"
-QT_MINOR="5"
+QT_MINOR="6"
 QT_PATCH="3"
 QT_VERSION="${QT_MAJOR}.${QT_MINOR}.${QT_PATCH}"
-QT_BASE_URL="https://download.qt.io/official_releases/qt"
+QT_BASE_URL="https://download.qt.io/archive/qt"
 
 EXAMPLES_DIR='/src/examples'
 RELEASE_DIR='/build/release'

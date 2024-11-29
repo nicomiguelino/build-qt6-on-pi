@@ -1,4 +1,4 @@
-FROM balenalib/raspberrypi3-debian:bookworm
+FROM balenalib/raspberrypi5-debian:bookworm
 
 ENV DEBIAN_FRONTEND=noninteractive
 

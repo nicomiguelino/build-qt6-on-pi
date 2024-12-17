@@ -1,0 +1,16 @@
+services:
+  builder:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.builder
+    volumes:
+      - ./build:/build
+      - ./examples:/src/examples
+      - ./scripts/build_examples.sh:/scripts/build_examples.sh
+  sandbox:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.sandbox
+    volumes:
+      - ./dropbox:/app/dropbox:z
+    privileged: true

@@ -4,7 +4,7 @@
 
 ## :seedling: About
 
-This project contains the tools that you need to build Qt 6 for Raspberry Pi 1, 2, 3, and 4.
+This project contains the tools that you need to build Qt 6 for Raspberry Pi 5.
 
 ## :rocket: Getting Started
 

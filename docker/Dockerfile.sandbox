@@ -1,0 +1,22 @@
+# vim:ft=dockerfile
+
+FROM balenalib/raspberrypi5-debian:bookworm
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# General-purpose dependencies
+RUN apt-get -y update && apt-get install -y \
+    wget
+
+# Runtime dependencies for the Qt 6 app
+RUN apt-get -y update && apt-get install -y \
+    qt6-base-dev \
+    qt6-webengine-dev
+
+WORKDIR /app
+
+ENV QT_QPA_PLATFORM=linuxfb
+
+CMD ["sleep", "infinity"]
+
+

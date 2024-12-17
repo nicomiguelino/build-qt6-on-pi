@@ -1,6 +1,8 @@
 services:
   builder:
-    build: .
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.legacy
     volumes:
       - $HOME/tmp-qt6/build:/build:Z
       - ./scripts/build_qt6.sh:/scripts/build_qt6.sh

@@ -13,9 +13,52 @@ RUN apt-get -y update && apt-get install -y \
     qt6-base-dev \
     qt6-webengine-dev
 
+RUN apt-get -y update && \
+    apt-get install -y --no-install-recommends \
+        dbus-daemon \
+        dbus-x11 \
+        libdbus-1-dev \
+        libdbus-glib-1-dev \
+        python3-dev \
+        python3-gi \
+        python3-netifaces \
+        python3-pip \
+        python3-setuptools \
+        python-is-python3
+
+RUN apt-get -y update && \
+    apt-get install -y --no-install-recommends \
+        libfontconfig1-dev \
+        libfreetype6-dev \
+        libicu-dev \
+        libinput-dev \
+        libxkbcommon-dev \
+        libsqlite3-dev \
+        libpng-dev \
+        libssl-dev \
+        libjpeg-dev \
+        libglib2.0-dev
+
+RUN apt-get -y update && \
+    apt-get install -y --no-install-recommends \
+        libgles2-mesa-dev \
+        libgbm-dev \
+        libdrm-dev
+
+RUN \
+    pip3 install --upgrade pip --break-system-packages && \
+    pip3 install wheel --break-system-packages
+
+COPY requirements/requirements.txt /tmp/requirements.txt
+
+RUN \
+    pip3 install -r /tmp/requirements.txt --break-system-packages
+
 WORKDIR /app
 
 ENV QT_QPA_PLATFORM=linuxfb
+ENV QT_QPA_DEBUG=1
+ENV QTWEBENGINE_CHROMIUM_FLAGS="--no-sandbox"
 
 CMD ["sleep", "infinity"]
 

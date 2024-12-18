@@ -13,4 +13,5 @@ services:
       dockerfile: docker/Dockerfile.sandbox
     volumes:
       - ./dropbox:/app/dropbox:z
+      - ./examples/webview/start_webview.py:/app/start_webview.py
     privileged: true

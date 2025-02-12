@@ -1,6 +1,6 @@
 # vim:ft=dockerfile
 
-FROM balenalib/raspberrypi5-debian:bookworm
+FROM ${BASE_IMAGE}:${BASE_TAG}
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -61,5 +61,3 @@ ENV QT_QPA_DEBUG=1
 ENV QTWEBENGINE_CHROMIUM_FLAGS="--no-sandbox"
 
 CMD ["sleep", "infinity"]
-
-

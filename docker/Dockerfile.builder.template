@@ -1,6 +1,6 @@
 # vim:ft=dockerfile
 
-FROM balenalib/raspberrypi5-debian:bookworm
+FROM ${BASE_IMAGE}:${BASE_TAG}
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -16,4 +16,3 @@ RUN mkdir -p /scripts /src
 WORKDIR /build
 
 CMD ["sleep", "infinity"]
-

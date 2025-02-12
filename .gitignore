@@ -1,3 +1,6 @@
 examples/*/build
 build/
 dropbox/
+
+docker/Dockerfile.builder
+docker/Dockerfile.sandbox

@@ -9,18 +9,33 @@ logging.basicConfig(level=logging.INFO)
 def main():
     parser = argparse.ArgumentParser(description='WebView Sandbox')
     parser.add_argument(
-        '--url',
+        '--uri',
         type=str,
-        default='https://anthias.screenly.io/',
-        help='URL to load in the webview'
+        default='',
+        help='URI of the content to be displayed'
+    )
+    parser.add_argument(
+        '--content-type',
+        type=str,
+        choices=['image', 'web'],
+        default='image',
+        help='Type of content to display'
     )
 
     args = parser.parse_args()
+    default_uri = (
+        'https://www.example.com'
+        if args.content_type == 'web'
+        else '/app/images/sample-01.webp'
+    ) if args.uri == '' else args.uri
 
     bus = pydbus.SessionBus()
     bus_instance = bus.get('sandbox.webview', '/')
-    # bus_instance.loadPage(args.url) # Uncomment this later if needed.
-    bus_instance.loadWebPImage() # Comment this line later if needed.
+    
+    if args.content_type == 'web':
+        bus_instance.loadPage(default_uri)
+    elif args.content_type == 'image':
+        bus_instance.loadWebPImage(default_uri)
 
 
 if __name__ == '__main__':

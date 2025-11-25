@@ -13,5 +13,6 @@ services:
       dockerfile: docker/Dockerfile.sandbox.${PLATFORM:-pi5}
     volumes:
       - ./dropbox:/app/dropbox:z
+      - ./images:/app/images:z
       - ./examples/webview/start_webview.py:/app/start_webview.py
     privileged: true

@@ -18,3 +18,11 @@ void MainWindow::loadPage(const QString &url)
     qWarning() << "Loading URL: " << url;
     view->load(QUrl(url));
 }
+
+void MainWindow::loadWebPImage()
+{
+    // Let's use a sample WebP image locally.
+    QString imagePath = "file:///app/sample.webp";
+    qWarning() << "Loading WebP image: " << imagePath;
+    view->load(QUrl(imagePath));
+}

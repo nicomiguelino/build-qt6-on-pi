@@ -2,7 +2,7 @@ services:
   builder:
     build:
       context: .
-      dockerfile: docker/Dockerfile.builder
+      dockerfile: docker/Dockerfile.builder.${PLATFORM:-pi5}
     volumes:
       - ./build:/build
       - ./examples:/src/examples
@@ -10,7 +10,7 @@ services:
   sandbox:
     build:
       context: .
-      dockerfile: docker/Dockerfile.sandbox
+      dockerfile: docker/Dockerfile.sandbox.${PLATFORM:-pi5}
     volumes:
       - ./dropbox:/app/dropbox:z
       - ./examples/webview/start_webview.py:/app/start_webview.py

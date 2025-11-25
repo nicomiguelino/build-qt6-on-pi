@@ -19,7 +19,8 @@ def main():
 
     bus = pydbus.SessionBus()
     bus_instance = bus.get('sandbox.webview', '/')
-    bus_instance.loadPage(args.url)
+    # bus_instance.loadPage(args.url) # Uncomment this later if needed.
+    bus_instance.loadWebPImage() # Comment this line later if needed.
 
 
 if __name__ == '__main__':

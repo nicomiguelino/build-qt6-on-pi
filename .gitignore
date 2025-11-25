@@ -2,5 +2,5 @@ examples/*/build
 build/
 dropbox/
 
-docker/Dockerfile.builder
-docker/Dockerfile.sandbox
+docker/Dockerfile.builder.pi*
+docker/Dockerfile.sandbox.pi*

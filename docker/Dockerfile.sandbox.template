@@ -60,4 +60,6 @@ ENV QT_QPA_PLATFORM=linuxfb
 ENV QT_QPA_DEBUG=1
 ENV QTWEBENGINE_CHROMIUM_FLAGS="--no-sandbox"
 
+COPY sample.webp .
+
 CMD ["sleep", "infinity"]

@@ -35,7 +35,7 @@ def main():
     if args.content_type == 'web':
         bus_instance.loadPage(default_uri)
     elif args.content_type == 'image':
-        bus_instance.loadWebPImage(default_uri)
+        bus_instance.loadImage(default_uri)
 
 
 if __name__ == '__main__':

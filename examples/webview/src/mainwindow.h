@@ -12,7 +12,7 @@ public:
 
 public slots:
     void loadPage(const QString &url);
-    void loadWebPImage(const QString &imagePath);
+    void loadImage(const QString &imagePath);
 
 private:
     QWebEngineView *view;

@@ -19,9 +19,9 @@ void MainWindow::loadPage(const QString &url)
     view->load(QUrl(url));
 }
 
-void MainWindow::loadWebPImage(const QString &imagePath)
+void MainWindow::loadImage(const QString &imagePath)
 {
     QString fileUrl = "file://" + imagePath;
-    qWarning() << "Loading WebP image: " << fileUrl;
+    qWarning() << "Loading image: " << fileUrl;
     view->load(QUrl(fileUrl));
 }

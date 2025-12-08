@@ -11,7 +11,8 @@ RUN apt-get -y update && apt-get install -y \
 # Runtime dependencies for the Qt 6 app
 RUN apt-get -y update && apt-get install -y \
     qt6-base-dev \
-    qt6-webengine-dev
+    qt6-webengine-dev \
+    qt6-image-formats-plugins
 
 RUN apt-get -y update && \
     apt-get install -y --no-install-recommends \
